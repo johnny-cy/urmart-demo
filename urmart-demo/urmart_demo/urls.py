@@ -18,8 +18,8 @@ from django.urls import path
 from django.conf.urls import include
 
 urlpatterns = [
-    path('urmart/', include("demo.urls")),
-    path('urmart-api/', include("apis.urls")),
+    path('urmart/urmart/', include("demo.urls")),
+    path('urmart/urmart-api/', include("apis.urls")),
     # path('apis/', include("apis.urls")),
 
     path('admin/', admin.site.urls), # optional
