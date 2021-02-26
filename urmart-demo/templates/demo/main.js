@@ -7,6 +7,11 @@
 //        + window.location.host
 //        + '/ws/urmart/update/'
 //    );
+    const urmartSocket = new WebSocket(
+        'wss://'
+        + window.location.host + ':8001'
+        + '/ws/urmart/update/'
+    );
     urmartSocket.onmessage = function(e){
         const data = JSON.parse(e.data);
         const [r, c] = UpdateField(data.message.data)
