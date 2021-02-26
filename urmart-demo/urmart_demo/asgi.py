@@ -7,9 +7,9 @@ For more information on this file, see
 https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
 """
 from django.core.asgi import get_asgi_application
-
-import os
 import django
+django.setup()
+import os
 from channels.routing import ProtocolTypeRouter
 from channels.routing import URLRouter
 from channels.auth import AuthMiddlewareStack
@@ -17,7 +17,7 @@ import web.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'urmart_demo.settings')
 
-django.setup()
+
 # root routing
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
