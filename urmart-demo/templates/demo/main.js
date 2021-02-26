@@ -2,11 +2,11 @@
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
-    const urmartSocket = new WebSocket(
-        'wss://'
-        + window.location.host
-        + '/ws/urmart/update/'
-    );
+//    const urmartSocket = new WebSocket(
+//        'ws://'
+//        + window.location.host
+//        + '/ws/urmart/update/'
+//    );
     urmartSocket.onmessage = function(e){
         const data = JSON.parse(e.data);
         const [r, c] = UpdateField(data.message.data)
