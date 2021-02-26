@@ -9,7 +9,7 @@
 //    );
     const urmartSocket = new WebSocket(
         'wss://'
-        + window.location.host + ':8001'
+        + window.location.host
         + '/ws/urmart/update/'
     );
     urmartSocket.onmessage = function(e){
