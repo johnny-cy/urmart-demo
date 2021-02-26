@@ -22,5 +22,5 @@ urlpatterns = [
     path('demo/apis/', include("apis.urls")),
 
     path('admin/', admin.site.urls), # optional
-    path('web/', include("web.urls")), # optional
+    path('demo/web/', include("web.urls")), # optional
 ]
