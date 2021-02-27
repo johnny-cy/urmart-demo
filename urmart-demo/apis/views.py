@@ -111,6 +111,7 @@ async def GenReport(request):
     """
     產生文件並選擇發送郵件 (async)
     """
+    
     @sync_to_async
     def do_thread():
             
@@ -133,7 +134,7 @@ async def GenReport(request):
             mail.attach_file(f'report_shop_{dt}.csv')
             mail.content_subtype = "html"
             mail.send()
-            ScheduleLog.objects.create({
+            ScheduleLog.objects.create(**{
                 "FuncName": "GenReport",
                 "is_sent": 1,
                 "To": str(to).replace("[", "").replace("]",""),
@@ -142,17 +143,22 @@ async def GenReport(request):
             print("async sent. (should use a specific logger for async log in future)")
         except Exception as e:
             print(e)
-            ScheduleLog.objects.create({
+            ScheduleLog.objects.create(**{
                 "FuncName": "GenReport",
                 "is_sent": 0,
                 "To": str(to).replace("[", "").replace("]",""),
                 "Comment": str(e)
             })
-            return JsonResponse({"results": "faied sending mail sent."})    
-        return JsonResponse({"results": "mail sent."})
+            print("faied sending shop report ..")
+        print("shop report has been sent successfully!")
 
+  
+    def get_data():
+        return 111
+    d = get_data()
+    print(d)
     task = asyncio.ensure_future(do_thread())
-    return JsonResponse({"results": "doing thread"})
+    return JsonResponse({"results": f'mail has been sent to address, , successfully.'})
 
 def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     """

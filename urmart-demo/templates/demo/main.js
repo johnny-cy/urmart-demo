@@ -235,7 +235,7 @@
             } else if (data.fld=="all"){
                 console.log("in all")
                 if (data.veb=="prepend"){
-                    el = $("#order-table>tbody").prepend("\
+                    var t = $("\
                     <tr name='oid-"+ data.tgtid +"''>\
                         <td name='oa'> "+ data.tgtid +" </td>\
                         <td name='ob'> "+ data.val.Pid +" </td>\
@@ -244,7 +244,20 @@
                         <td name='oe'> "+ data.val.Customer +" </td>\
                         <td > <div class='minus-circle' onclick='DelOrder("+(data.tgtid)+")'>–</div> </td>\
                     </tr>\
-                    ");
+                    ").hide()
+                    $("#order-table>tbody").prepend(t)
+                    t.fadeIn("slow")
+
+                    {% comment %} el = $("#order-table>tbody").prepend("\
+                    <tr name='oid-"+ data.tgtid +"''>\
+                        <td name='oa'> "+ data.tgtid +" </td>\
+                        <td name='ob'> "+ data.val.Pid +" </td>\
+                        <td name='oc'> "+ data.val.Qty +" </td>\
+                        <td name='od'> "+ data.val.Shop_id +" </td>\
+                        <td name='oe'> "+ data.val.Customer +" </td>\
+                        <td > <div class='minus-circle' onclick='DelOrder("+(data.tgtid)+")'>–</div> </td>\
+                    </tr>\
+                    ").fadeIn("slow") {% endcomment %}
                     return [false, ""]
                 };
             };
