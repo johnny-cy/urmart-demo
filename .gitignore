@@ -3,3 +3,4 @@
 *.out
 *.log
 *.csv
+*.sqlite3
