@@ -122,6 +122,7 @@ async def GenReport(request):
             subject = "訂單記錄統"
             body = "<h1>統計內容</H1><hr><H2>根據訂單記錄算出各個館別的1.總銷售金額 2.總銷售數量 3.總訂單數量<br><p>統計結果請見附件</p>"
             to = ['svmax0922@gmail.com', settings.EMAIL_HOST_USER]
+            # to = [i.strip() for i in to ]
             mail = EmailMessage(
                 subject = subject,
                 body = body,
@@ -132,9 +133,21 @@ async def GenReport(request):
             mail.attach_file(f'report_shop_{dt}.csv')
             mail.content_subtype = "html"
             mail.send()
+            ScheduleLog.objects.create({
+                "FuncName": "GenReport",
+                "is_sent": 1,
+                "To": str(to).replace("[", "").replace("]",""),
+                "Comment": "-"
+            })
             print("async sent. (should use a specific logger for async log in future)")
         except Exception as e:
             print(e)
+            ScheduleLog.objects.create({
+                "FuncName": "GenReport",
+                "is_sent": 0,
+                "To": str(to).replace("[", "").replace("]",""),
+                "Comment": str(e)
+            })
             return JsonResponse({"results": "faied sending mail sent."})    
         return JsonResponse({"results": "mail sent."})
 

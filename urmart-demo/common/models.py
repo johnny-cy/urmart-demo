@@ -42,6 +42,7 @@ class ScheduleLog(models.Model):
     FuncName     = models.CharField(max_length=50, blank=False)
     is_sent      = models.BooleanField(default=0)
     To           = models.TextField(blank=False)
+    Comment      = models.TextField(blank=True)
     CreatedTime  = models.DateTimeField(auto_now_add=True)
     LastModified = models.DateTimeField(auto_now=True) 
 
