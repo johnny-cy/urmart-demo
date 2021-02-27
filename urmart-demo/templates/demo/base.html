@@ -15,7 +15,7 @@
 </head>
 <style>
     .container {
-        width: 50%;
+        width: 40%;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -24,17 +24,23 @@
     }
     .top-section{
         display:flex;
-        flex-direction: row;
+        flex-flow: row wrap;
+        flex-wrap: wrap;
+        
+        {% comment %} flex-direction: row; {% endcomment %}
     }
     .left-side{
         border: solid 1px none;
         border-color: none;
         display: flex;
-        flex-direction: row;
-        width: 55%;
+        flex-flow: row wrap;
+        margin: 0px 80px 0px 0px;
     }
     .right-side{
-        width: 45%;
+        {% comment %} width: 45%; {% endcomment %}
+        {% comment %} margin: 10px 0px 0px 15px; {% endcomment %}
+        
+
     }
     .product-list-section{
         border: solid 1px none;

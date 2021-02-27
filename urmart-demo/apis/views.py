@@ -24,10 +24,10 @@ def require_validation(function):
         print("path:" , request.get_full_path_info())
         # print(dir(request))
         try:
-            if "/urmart-api/AddOrder/" == request.get_full_path_info(): # for AddOrder
+            if "/urmart-api/AddOrder/" in request.get_full_path_info(): # for AddOrder
                 post_data = json.loads(request.body)
                 ValidateAddOrder(post_data)
-            elif re.search( r"^/urmart-api/DelOrder/[0-9]+/$",request.get_full_path_info()) != None :
+            elif re.search( r"^/urmart-api/DelOrder/[0-9]+/$", request.get_full_path_info()) != None :
                 print("in DelOrder Validator")
                 
         except ValidationError as e:
@@ -66,6 +66,7 @@ def AddOrder(request):
     """
     添加訂單
     """
+    print("in add order")
     post_data = json.loads(request.body)
     p = Product.objects
     data = {
@@ -153,6 +154,7 @@ def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     return JsonResponse({"results": list(top3)})
     
 def ValidateAddOrder(post_data,):
+    print("validate add order")
     required_fields = ['pid', 'qty', 'is_vip', 'cid']
     p = Product.objects.get(id=post_data['pid'])
     for field in required_fields:

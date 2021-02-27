@@ -3,7 +3,7 @@
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
     const urmartSocket = new WebSocket(
-        'wss://'
+        'ws://'
         + window.location.host
         + '/ws/urmart/update/'
     );
@@ -101,7 +101,7 @@
                 cid: cid
             })
             .then((response)=>{
-                RefreshOrder()
+                
                 // update product stock_pcs
                 message_info1 = {"veb":"update", "tgt": "pd", "tgtid": pid , "fld": "qty", "val": -qty}
                 BroadcastGroup(message_info1)
@@ -219,18 +219,20 @@
             };
         } else if(data.tgt=="od"){
             console.log("update field od")
-            if (data.fld="id"){
+            if (data.fld=="id"){
                 if (data.veb=="delete"){
                     console.log("data fld id")
                     el = $("#order-table>tbody>tr[name='oid-"+ data.tgtid +"']").fadeOut("slow")
                     return [true, "訂單編號"+ data.tgtid +"被刪除，存貨已退回。"]
-                } else if (data.veb="prepend"){
-                    console.log("in prepend")
-                    console.log(data)
-                    el = $("#order-table>tbody>").prepend("\
+                }
+            
+            } else if (data.fld=="all"){
+                console.log("in all")
+                if (data.veb=="prepend"){
+                    el = $("#order-table>tbody").prepend("\
                     <tr name='oid-"+ data.tgtid +"''>\
                         <td name='oa'> "+ data.tgtid +" </td>\
-                        <td name='ob'> "+ data.val.pid +" </td>\
+                        <td name='ob'> "+ data.val.Pid +" </td>\
                         <td name='oc'> "+ data.val.Qty +" </td>\
                         <td name='od'> "+ data.val.Shop_id +" </td>\
                         <td name='oe'> "+ data.val.Customer +" </td>\
@@ -239,7 +241,6 @@
                     ");
                     return [false, ""]
                 };
-            
             };
         };
     };
