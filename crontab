@@ -1,0 +1,1 @@
+#0 * * * * /path/to/python /path/to/send_shop_report.py >> /sent.log 2>&1
