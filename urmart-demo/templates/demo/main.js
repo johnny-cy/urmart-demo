@@ -228,7 +228,7 @@
             if (data.fld=="id"){
                 if (data.veb=="delete"){
                     console.log("data fld id")
-                    el = $("#order-table>tbody>tr[name='oid-"+ data.tgtid +"']").fadeOut("slow")
+                    el = $("#order-table>tbody>tr[name='oid-"+ data.tgtid +"']").fadeOut("slow", function(){$(this).remove()})
                     return [true, "訂單編號"+ data.tgtid +"被刪除，存貨已退回。"]
                 }
             
@@ -283,7 +283,7 @@
                 .html(message)
                 .show()
                 .delay(time)
-                .fadeOut();
+                .fadeOut('slow', function(){$(this).remove()});
         };
     var success_prompt = function(message, time){
             prompt(message, 'alert-success', time);
