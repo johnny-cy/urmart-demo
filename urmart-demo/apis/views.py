@@ -156,7 +156,7 @@ async def GenReport(request):
             print("faied sending shop report ..")
 
     task = asyncio.ensure_future(do_thread())
-    return JsonResponse({"results": f'mail has been successfully sent to gmail test accounts, {settings.EMAIL_HOST_USER} and the passwd is "thisissick123". Please feel free to login if needed.'})
+    return JsonResponse({"results": f'mail has been successfully sent to gmail test accounts'})
 
 def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     """

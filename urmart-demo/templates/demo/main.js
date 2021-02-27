@@ -267,7 +267,7 @@
         axios.get("{% url 'GenReport' %}")
             .then((response)=>{
                 console.log(response.data.results)
-                alert("Receiver mail info is at console log.")
+                alert("Generating CSV Shop Report, please visit static file service as the following link 'https://ap3.test-vm.life/urmart/static/'")
             })
             .catch((error)=>{
                 console.log(error)
