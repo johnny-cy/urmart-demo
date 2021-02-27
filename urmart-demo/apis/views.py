@@ -140,7 +140,7 @@ async def GenReport(request):
                 "To": str(to).replace("[", "").replace("]",""),
                 "Comment": "-"
             })
-            print("async sent. (should use a specific logger for async log in future)")
+            print("async sent successfully!. (should use a specific logger for async log in future)")
         except Exception as e:
             print(e)
             ScheduleLog.objects.create(**{
@@ -150,15 +150,9 @@ async def GenReport(request):
                 "Comment": str(e)
             })
             print("faied sending shop report ..")
-        print("shop report has been sent successfully!")
 
-  
-    def get_data():
-        return 111
-    d = get_data()
-    print(d)
     task = asyncio.ensure_future(do_thread())
-    return JsonResponse({"results": f'mail has been sent to address, , successfully.'})
+    return JsonResponse({"results": f'mail has been successfully sent to gmail test accounts, {settings.EMAIL_HOST_USER} and the passwd is "thisissick123". Please feel free to login if needed.'})
 
 def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     """

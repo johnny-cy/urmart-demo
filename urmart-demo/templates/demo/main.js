@@ -266,7 +266,8 @@
     function GenReport(){
         axios.get("{% url 'GenReport' %}")
             .then((response)=>{
-                console.log(response)
+                console.log(response.data.results)
+                alert("Receiver mail info is at console log.")
             })
             .catch((error)=>{
                 console.log(error)
