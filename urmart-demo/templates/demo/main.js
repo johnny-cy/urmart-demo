@@ -2,9 +2,9 @@
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
     if (location.protocol=="https:"){
-        const websocket_protocol = "wss://"
+        var websocket_protocol = "wss://"
     } else {
-        const websocket_protocol = "ws://"
+        var websocket_protocol = "ws://"
     };
     
     const urmartSocket = new WebSocket(
