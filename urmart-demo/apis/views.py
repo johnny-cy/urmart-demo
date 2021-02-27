@@ -120,6 +120,10 @@ async def GenReport(request):
             data = Order.objects.values('Shop_id').annotate(orders_count=Count('id'), sold_pcs=Sum('Qty'), sales=Sum(F('Qty')*F('Price')))
             dt = datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
             pd.DataFrame(data).to_csv(f'report_shop_{dt}.csv', index=False)
+            try:
+                pd.DataFrame(data).to_csv(f'static/report_shop_{dt}.csv', index=False)
+            except:
+                pass
             subject = "訂單記錄統"
             body = "<h1>統計內容</H1><hr><H2>根據訂單記錄算出各個館別的1.總銷售金額 2.總銷售數量 3.總訂單數量<br><p>統計結果請見附件</p>"
             to = ['svmax0922@gmail.com', settings.EMAIL_HOST_USER]
@@ -131,7 +135,7 @@ async def GenReport(request):
                 to = to,
                 headers = {"Message-ID": "foo"},
             )
-            mail.attach_file(f'report_shop_{dt}.csv')
+            mail.attach_file(f'static/report_shop_{dt}.csv')
             mail.content_subtype = "html"
             mail.send()
             ScheduleLog.objects.create(**{
