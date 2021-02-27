@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  urmart-demo:
+    image: johnnylindocker/urmart:demo2
+    stdin_open: true
+    tty: true
+    environment:
+      - LANG=C.UTF-8
+      - PYTHONIOENCODING=UTF-8
+      - ENV=AWS
+      - DJANGO_SETTINGS_MODULE=urmart_demo.settings
+    command: >
+      bash -c "/etc/init.d/cron start &&
+                crontab /workspace/crontab &&
+                uwsgi --ini /workspace/urmart_demo/uwsgi.ini &&
+                /usr/local/bin/daphne -b 0.0.0.0 -p 8001 urmart_demo.asgi:application &&
+                tail -f /dev/null"
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - './urmart-demo:/workspace'
+    networks:
+      - my-overlay
+
+networks:
+  my-overlay:
+    external: true
