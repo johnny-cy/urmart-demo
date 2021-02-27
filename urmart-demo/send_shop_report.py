@@ -1,15 +1,14 @@
 import requests
-import inspect
 
+# need a center of registeration in future
 API_BASE = "https://ap3.test-vm.life/urmart/urmart-api/"
 API_GENREPORT = "GenReport"
 
 def main():
-    # conn = sqlite3.connect("./db.sqlite3")
-    # cursor = conn.cursor()
-
-    # result = requests.get(API_BASE + API_GENREPORT)
-    print(inspect.stack()[3])
+    try:
+        requests.get(API_BASE + API_GENREPORT)
+    except Exception as e:
+        print(e)
     
 
 if __name__ == "__main__":
