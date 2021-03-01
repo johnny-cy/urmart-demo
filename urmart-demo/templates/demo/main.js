@@ -1,6 +1,7 @@
 <script type="text/javascript">
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+    axios.defaults.headers.post['X-CSRF-Token'] = response.data._csrf
     if (location.protocol=="https:"){
         var websocket_protocol = "wss://"
     } else {
