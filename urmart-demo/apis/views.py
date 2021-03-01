@@ -110,7 +110,7 @@ def DelOrder(request, oid):
         print(e)
     return JsonResponse({"results": {"Pid": pid, "Qty": qty}})
 
-@csrf_exempt
+
 async def GenReport(request):
     """
     產生文件並選擇發送郵件 (async)
