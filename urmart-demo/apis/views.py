@@ -16,6 +16,7 @@ from django.conf import settings
 from asgiref.sync import sync_to_async
 import asyncio
 
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 # validating decorator
@@ -61,6 +62,7 @@ def GetProduct(request, pid=None):
     print(data)
     return JsonResponse({"results": list(data)})
 
+@csrf_exempt
 @require_validation
 def AddOrder(request):
     """
@@ -88,6 +90,7 @@ def AddOrder(request):
     
     return JsonResponse({"results": list(new_order_data)})
 
+@csrf_exempt
 @require_validation
 def DelOrder(request, oid):
     """
@@ -158,6 +161,7 @@ async def GenReport(request):
     task = asyncio.ensure_future(do_thread())
     return JsonResponse({"results": f'mail has been successfully sent to gmail test accounts'})
 
+@csrf_exempt
 def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     """
     獲取產品排名
@@ -169,6 +173,7 @@ def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     else:
         return JsonResponse({"results": {"error_message": f"strategy {order_by} not implenmented."}})
     return JsonResponse({"results": list(top3)})
+
     
 def ValidateAddOrder(post_data,):
     print("validate add order")
