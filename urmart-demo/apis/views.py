@@ -63,7 +63,7 @@ def GetProduct(request, pid=None):
     print(data)
     return JsonResponse({"results": list(data)})
 
-@ensure_csrf_cookie
+
 @require_validation
 def AddOrder(request):
     """
@@ -91,7 +91,7 @@ def AddOrder(request):
     
     return JsonResponse({"results": list(new_order_data)})
 
-@ensure_csrf_cookie
+
 @require_validation
 def DelOrder(request, oid):
     """
@@ -162,7 +162,7 @@ async def GenReport(request):
     task = asyncio.ensure_future(do_thread())
     return JsonResponse({"results": f'mail has been successfully sent to gmail test accounts'})
 
-@ensure_csrf_cookie
+
 def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     """
     獲取產品排名

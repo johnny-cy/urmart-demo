@@ -143,9 +143,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'smtplibmail01@gmail.com'
 
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-
-CSRF_COOKIE_USED = True
-CSRF_COOKIE_NAME = 'csrftokenn'
+CSRF_COOKIE_DOMAIN = ".test-vm.life"
