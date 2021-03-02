@@ -145,5 +145,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'smtplibmail01@gmail.com'
 
-CSRF_COOKIE_DOMAIN = ".test-vm.life"
+# CSRF_COOKIE_DOMAIN = ".test-vm.life"
 CORS_ORIGIN_ALLOW_ALL = True #CORS
+CSRF_TRUSTED_ORIGINS = ['ap4.test-vm.life']
