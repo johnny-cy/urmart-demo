@@ -162,7 +162,7 @@ async def GenReport(request):
     task = asyncio.ensure_future(do_thread())
     return JsonResponse({"results": f'mail has been successfully sent to gmail test accounts'})
 
-@csrf_exempt
+
 def GetTop(request, num=3, order_by="sales_volume", order="asc"):
     """
     獲取產品排名
