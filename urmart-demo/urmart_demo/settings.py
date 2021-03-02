@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -146,5 +146,5 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'smtplibmail01@gmail.com'
 
 # CSRF_COOKIE_DOMAIN = ".test-vm.life"
-CORS_ORIGIN_ALLOW_ALL = True #CORS
-CSRF_TRUSTED_ORIGINS = ['ap4.test-vm.life']
+# CORS_ORIGIN_ALLOW_ALL = True #CORS
+# CSRF_TRUSTED_ORIGINS = ['ap4.test-vm.life']
